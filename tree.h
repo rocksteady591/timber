@@ -5,9 +5,7 @@
 class Tree{
 public:
     Tree(const std::string& texture_path, int x, int y);
-    sf::Sprite GetSprite() const{
-        return sprite_tree_;
-    }
+    sf::Sprite GetSprite() const;
 private:
     sf::Texture texture_tree_;
     sf::Sprite sprite_tree_;

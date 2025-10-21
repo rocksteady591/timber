@@ -5,3 +5,7 @@ Tree::Tree(const std::string& texture_path, int x, int y) {
     sprite_tree_.setTexture(texture_tree_);
     sprite_tree_.setPosition(x, y);
 }
+
+sf::Sprite Tree::GetSprite() const{
+    return sprite_tree_;
+}

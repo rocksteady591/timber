@@ -5,14 +5,11 @@
 class Cloud{
 public:
     Cloud(const std::string& texture_path, int x, int y);
-    float GetSpeed() const{
-        return cloud_cpeed_;
-    }
-    sf::Sprite GetSprite() const{
-        return sprite_cloud_;
-    }
+    float GetSpeed() const;
+    sf::Sprite GetSprite() const;
+    void SetSpeed(float* speed);
 private:
     sf::Texture texture_cloud_;
     sf::Sprite sprite_cloud_;
-    float cloud_cpeed_ = 0.0f;
+    float cloud_speed_ = 0.0f;
 };
