@@ -1,4 +1,8 @@
 #include <SFML/Graphics.hpp>
+#include "cloud.h"
+#include "bee.h"
+#include "tree.h"
+#include <string>
 
 int main(){
     sf::VideoMode vm(1920, 1080);
@@ -9,50 +13,36 @@ int main(){
     sf::Sprite sprite_background;
     sprite_background.setTexture(texture_background);
     sprite_background.setPosition(0,0);
-    // tree
-    sf::Texture texture_tree;
-    texture_tree.loadFromFile("graphics/tree.png");
-    sf::Sprite sprite_tree;
-    sprite_tree.setTexture(texture_tree);
-    sprite_tree.setPosition(810, 0);
-    // bee
-    sf::Texture texture_bee;
-    texture_bee.loadFromFile("graphics/bee.png");
-    sf::Sprite sprite_bee;
-    sprite_bee.setTexture(texture_bee);
-    sprite_bee.setPosition(0, 800);
-    bool bee_is_active = false;
-    float bee_speed = 0.0f;
-    //clouds
-    sf::Texture texture_cloud;
-    texture_cloud.loadFromFile("graphics/cloud.png");
-    sf::Sprite sprite_cloud_1;
-    sf::Sprite sprite_cloud_2;
-    sf::Sprite sprite_cloud_3;
-    sprite_cloud_1.setTexture(texture_cloud);
-    sprite_cloud_2.setTexture(texture_cloud);
-    sprite_cloud_3.setTexture(texture_cloud);
-    sprite_cloud_1.setPosition(0, 0);
-    sprite_cloud_2.setPosition(0, 250);
-    sprite_cloud_3.setPosition(0, 500);
-    float cloud_speed_1 = 0.0f;
-    float cloud_speed_2 = 0.0f;
-    float cloud_speed_3 = 0.0f;
+    // tree-----------------------------------------------
+    std::string tree_texture_path = "graphics/tree.png";
+    Tree tree1(tree_texture_path, 810, 0);
+    // bee------------------------------------------------
+    std::string bee_texture_path = "graphics/bee.png";
+    Bee bee1(bee_texture_path, 0, 800);
+    //clouds----------------------------------------------
+    std::string cloud_texture_path = "graphics/cloud.png"; 
+    Cloud cloud1(cloud_texture_path, 0, 0);
+    Cloud cloud2(cloud_texture_path, 0, 250);
+    Cloud cloud3(cloud_texture_path, 0, 500);
+    //clock
+    sf::Clock clock;
     while(window.isOpen()){
         if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)){
             window.close();
         }
         window.clear();
+        //time
+        sf::Time dt = clock.restart();
         //background
         window.draw(sprite_background);
         //tree
-        window.draw(sprite_tree);
+        window.draw(tree1.GetSprite());
         //bee
-        window.draw(sprite_bee);
+        window.draw(bee1.GetSprite());
         //clouds
-        window.draw(sprite_cloud_1);
-        window.draw(sprite_cloud_2);
-        window.draw(sprite_cloud_3);
+        window.draw(cloud1.GetSprite());
+        window.draw(cloud2.GetSprite());
+        window.draw(cloud3.GetSprite());
 
         window.display();
     }
